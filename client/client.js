@@ -30,7 +30,7 @@ Template.ModeSelector.helpers({
     return Session.get('shouldRender') === value;
   },
   session: (key) => {
-    return Session.get(key)
+    return Session.get(key);
   }
 });
 
@@ -51,6 +51,6 @@ Template.Data.helpers({
 });
 Template.DataEntry.helpers({
   stringified: function() {
-    return JSON.stringify(_.omit(this, 'children'));
+    return JSON.stringify(this, null, '\t');
   }
 });
