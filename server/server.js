@@ -15,6 +15,7 @@ function buildRecord(complexity, depth) {
     record["boolean_"+i] = _.sample([true, false]);
     record["number_"+i] = faker.random.number(100000);
     record["date_"+i] = faker.Date.recent(30);
+    record["text_"+i] = faker.Lorem.sentence(20, 0);
   });
 
   if (depth > 0) {
