@@ -62,7 +62,12 @@ Meteor.methods({
     return options;
   },
   lastSize: () => {
-    return JSON.stringify(DataCollection.findOne({}, { sort: { updatedAt: -1 }})).length;
+    const lastObject = DataCollection.findOne({}, { sort: { updatedAt: -1 }});
+    if(lastObject){
+      return JSON.stringify(lastObject).length;
+    } else {
+      return 0;
+    }
   }
 });
 

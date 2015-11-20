@@ -38,7 +38,7 @@ Template.ModeSelector.events({
   "change input[type='radio']": function({ target: { value } }) {
     Session.set('shouldRender', value === 'true');
   },
-  "change input[type='range']": function({ target: { name, value } }) {
+  "keyup input[type='number']": function({ target: { name, value } }) {
     const intValue = parseInt(value, 10);
     Meteor.call(name, intValue, settingsCallback);
   }
