@@ -1,0 +1,60 @@
+<head>
+  <title>EJSON / minimongo serialization test</title>
+</head>
+
+<body>
+  {{> ModeSelector }}
+</body>
+
+<template name="ModeSelector">
+  <p>
+    <label>
+      <input type="range" name="count" min="0" max="100" step="1" value="{{ session 'count' }}">
+      Count = {{ session 'count' }}
+    </label>
+  </p>
+  <p>
+    <label>
+      <input type="range" name="complexity" min="0" max="100" step="1" value="{{ session 'complexity' }}">
+      Complexity = {{ session 'complexity'}}
+    </label>
+  </p>
+  <p>
+    <label>
+      <input type="range" name="depth" min="0" max="20" step="1" value="{{ session 'depth' }}">
+      Depth = {{ session 'depth' }}
+    </label>
+  </p>
+  <p>
+    Last updated document size was {{ session 'lastSize' }}
+  </p>
+  <p>
+    Render the data?
+    <label>
+      <input type="radio" name="render"  value="true" checked="{{ shouldRender true }}" />
+      Yes
+    </label>
+    <label>
+      <input type="radio" name="render"  value="false" checked="{{ shouldRender false }}"/>
+      No
+    </label>
+  </p>
+  {{# if shouldRender true }}
+    {{> Data}}
+  {{ /if }}
+</template>
+
+<template name="Data">
+  {{# each data }}
+    {{> DataEntry }}
+  {{/each}}
+</template>
+
+<template name="DataEntry">
+  <div class="data">
+    <pre>{{ stringified }}</pre>
+    {{# each children }}
+      {{> DataEntry }}
+    {{/each}}
+  </div>
+</template>
